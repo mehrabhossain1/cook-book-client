@@ -1,11 +1,12 @@
 import React from "react";
-import Navbar from "./Navbar";
+
 import Footer from "./Footer";
+import Header from "./Header";
 
 const Home = () => {
   return (
     <div>
-      <Navbar></Navbar>
+      <Header></Header>
       <h2 className="text-center">This is home comp</h2>
       <Footer></Footer>
     </div>
