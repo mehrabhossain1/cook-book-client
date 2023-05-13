@@ -6,7 +6,7 @@ const Main = () => {
   return (
     <div>
       <Header></Header>
-      <h2>main opage</h2>
+      <h2>main page</h2>
       <Footer></Footer>
     </div>
   );
