@@ -8,7 +8,7 @@ const LoginLayout = () => {
     <div>
       <Header></Header>
       <Login></Login>
-      <h2>thisis login layout</h2>
+      <h2>this is login layout</h2>
       <Outlet></Outlet>
     </div>
   );
