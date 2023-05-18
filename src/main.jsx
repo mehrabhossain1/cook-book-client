@@ -5,11 +5,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ErrorPage from "./components/Error.jsx";
 import LoginLayout from "./layouts/LoginLayout";
+import Blogs from "./components/Blogs";
+import Main from "./components/Main";
+import Recipes from "./components/Recipes";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginLayout></LoginLayout>,
+    element: <Main></Main>,
     errorElement: <ErrorPage />,
     // children: [
     //   {
@@ -17,6 +20,14 @@ const router = createBrowserRouter([
     //     element: <LoginLayout></LoginLayout>,
     //   },
     // ],
+  },
+  {
+    path: "/blogs",
+    element: <Blogs></Blogs>,
+  },
+  {
+    path: "/recipes",
+    element: <Recipes></Recipes>,
   },
 ]);
 
