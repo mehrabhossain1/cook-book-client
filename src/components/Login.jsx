@@ -1,43 +1,71 @@
 import React from "react";
+import {
+  MDBContainer,
+  MDBInput,
+  MDBCheckbox,
+  MDBBtn,
+  MDBIcon,
+} from "mdb-react-ui-kit";
 
 const Login = () => {
   return (
     <div>
-      <div className="container my-5">
-        <div className="row d-flex justify-content-center align-items-center">
-          <div className="col-md-6 ">
-            <div className="border w-100 m-auto text-center p-5">
-              <form action="">
-                <input
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="email p-3 m-2"
-                  type="email"
-                  placeholder="enter your email"
-                />
-                <input
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="password p-3 m-2"
-                  type="password"
-                  placeholder="enter your password"
-                />
-                <button
-                  // onClick={handleLogin}
-                  className="btn btn-info w-75 p-2 mt-3"
-                >
-                  Login
-                </button>
-                <p className="p-2">
-                  <small className="text-info">
-                    are you new? register here..
-                  </small>
-                </p>
-              </form>
-            </div>
-          </div>
-          {/* <div className="col-md-6"></div> */}
-          {/* <SocialLoginBtn></SocialLoginBtn> */}
+      <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+        <MDBInput
+          wrapperClass="mb-4"
+          label="Email address"
+          id="form1"
+          type="email"
+        />
+        <MDBInput
+          wrapperClass="mb-4"
+          label="Password"
+          id="form2"
+          type="password"
+        />
+
+        <div className="d-flex justify-content-between mx-3 mb-4">
+          <MDBCheckbox
+            name="flexCheck"
+            value=""
+            id="flexCheckDefault"
+            label="Remember me"
+          />
+          <a href="!#">Forgot password?</a>
         </div>
-      </div>
+
+        <MDBBtn className="mb-4">Sign in</MDBBtn>
+
+        <div className="text-center">
+          <p>
+            Not a member? <a href="#!">Register</a>
+          </p>
+          <p>or sign up with:</p>
+
+          <div
+            className="d-flex justify-content-center gap-3 mx-auto"
+            style={{ width: "40%" }}
+          >
+            <MDBBtn
+              tag="a"
+              color="none"
+              className=""
+              style={{ color: "#1266f1" }}
+            >
+              <MDBIcon fab icon="google" size="lg" />
+            </MDBBtn>
+
+            <MDBBtn
+              tag="a"
+              color="none"
+              className=""
+              style={{ color: "#1266f1" }}
+            >
+              <MDBIcon fab icon="github" size="lg" />
+            </MDBBtn>
+          </div>
+        </div>
+      </MDBContainer>
     </div>
   );
 };
