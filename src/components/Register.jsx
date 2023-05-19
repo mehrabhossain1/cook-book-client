@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   MDBBtn,
   MDBContainer,
@@ -11,8 +11,34 @@ import {
   MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
+  const { registerUser } = useContext(AuthContext);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleRegistration = (e) => {
+    e.preventDefault();
+
+    if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+      setError("The password is less than 6 characters");
+      return;
+    }
+    if ((name, email, password)) {
+      registerUser(email, password)
+        .then((result) => {
+          console.log(result.user);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+  };
+
   return (
     <div>
       <MDBContainer fluid>
@@ -24,37 +50,48 @@ const Register = () => {
                 lg="6"
                 className="order-2 order-lg-1 d-flex flex-column align-items-center"
               >
-                <p classNAme="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                   Sign up
                 </p>
 
+                <p className="text-danger">{error}</p>
                 <div className="d-flex flex-row align-items-center mb-4 ">
                   <MDBIcon fas icon="user me-3" size="lg" />
                   <MDBInput
+                    onChange={(e) => setName(e.target.value)}
                     label="Your Name"
                     id="form1"
                     type="text"
                     className="w-100"
+                    required
                   />
                 </div>
 
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="envelope me-3" size="lg" />
-                  <MDBInput label="Your Email" id="form2" type="email" />
+                  <MDBInput
+                    onChange={(e) => setEmail(e.target.value)}
+                    label="Your Email"
+                    id="form2"
+                    type="email"
+                    required
+                  />
                 </div>
 
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="lock me-3" size="lg" />
-                  <MDBInput label="Password" id="form3" type="password" />
+                  <MDBInput
+                    onChange={(e) => setPassword(e.target.value)}
+                    label="Password"
+                    id="form3"
+                    type="password"
+                    required
+                  />
                 </div>
 
                 <div className="d-flex flex-row align-items-center mb-4">
-                  <MDBIcon fas icon="key me-3" size="lg" />
-                  <MDBInput
-                    label="Repeat your password"
-                    id="form4"
-                    type="password"
-                  />
+                  <MDBIcon fas icon="camera-retro me-3" size="lg" />
+                  <MDBInput label="Photo URL" id="form4" type="text" />
                 </div>
 
                 <div className="mb-4">
@@ -66,7 +103,7 @@ const Register = () => {
                   />
                 </div>
 
-                <MDBBtn className="mb-4" size="lg">
+                <MDBBtn onClick={handleRegistration} className="mb-4" size="lg">
                   Register
                 </MDBBtn>
               </MDBCol>
