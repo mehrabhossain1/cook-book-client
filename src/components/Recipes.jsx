@@ -19,8 +19,7 @@ const Recipes = () => {
   console.log(recipesData);
 
   return (
-    <div>
-      <Header></Header>
+    <div className="mb-5">
       {/* all recipes */}
       <Container>
         <Row xs={1} md={2} className="g-4">
@@ -44,8 +43,6 @@ const Recipes = () => {
           ))}
         </Row>
       </Container>
-
-      <Footer></Footer>
     </div>
   );
 };
