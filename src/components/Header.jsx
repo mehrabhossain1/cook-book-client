@@ -3,12 +3,19 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { AuthContext } from "../providers/AuthProvider";
-import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, LogOut } = useContext(AuthContext);
   console.log(user?.email);
+
+  const handleLogout = () => {
+    LogOut()
+      .then()
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <Navbar
@@ -35,7 +42,7 @@ const Header = () => {
 
             {user?.email ? (
               <Nav.Link>
-                <Button>Logout</Button>
+                <Button onClick={handleLogout}>Logout</Button>
               </Nav.Link>
             ) : (
               <Nav.Link href="/login">Login</Nav.Link>
