@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user?.email);
+
   return (
     <Navbar
       collapseOnSelect
@@ -26,6 +30,7 @@ const Header = () => {
             <Nav.Link>Home</Nav.Link>
             <Nav.Link>Recipes</Nav.Link>
             <Nav.Link>Blogs</Nav.Link>
+            <Nav.Link>Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
