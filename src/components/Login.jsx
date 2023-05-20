@@ -7,9 +7,14 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { AuthContext } from "../providers/AuthProvider";
+// import { useLocation, useHistory, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
+
+  // const location = useLocation();
+  // const history = useHistory();
+  // let navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
