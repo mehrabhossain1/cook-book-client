@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {
   MDBContainer,
   MDBInput,
@@ -6,18 +6,37 @@ import {
   MDBBtn,
   MDBIcon,
 } from "mdb-react-ui-kit";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    loginUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <div>
       <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
         <MDBInput
+          onChange={(e) => setEmail(e.target.value)}
           wrapperClass="mb-4"
           label="Email address"
           id="form1"
           type="email"
         />
         <MDBInput
+          onChange={(e) => setPassword(e.target.value)}
           wrapperClass="mb-4"
           label="Password"
           id="form2"
@@ -34,7 +53,9 @@ const Login = () => {
           <a href="!#">Forgot password?</a>
         </div>
 
-        <MDBBtn className="mb-4">Sign in</MDBBtn>
+        <MDBBtn onClick={handleLogin} className="mb-4">
+          Sign in
+        </MDBBtn>
 
         <div className="text-center">
           <p>
