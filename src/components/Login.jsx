@@ -7,11 +7,26 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { AuthContext } from "../providers/AuthProvider";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import app from "../firebase/firebase.config";
 // import { useLocation, useHistory, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
+  
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
 
+  const googleSignIn = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log("error", error.message);
+      });
+  };
   // const location = useLocation();
   // const history = useHistory();
   // let navigate = useNavigate();
@@ -64,7 +79,7 @@ const Login = () => {
 
         <div className="text-center">
           <p>
-            Not a member? <a href="#!">Register</a>
+            Not a member? <a href="/register">Register</a>
           </p>
           <p>or sign up with:</p>
 
@@ -73,6 +88,7 @@ const Login = () => {
             style={{ width: "40%" }}
           >
             <MDBBtn
+              onClick={googleSignIn}
               tag="a"
               color="none"
               className=""

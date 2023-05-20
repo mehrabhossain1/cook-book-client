@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -16,7 +14,7 @@ const Recipes = () => {
       .then((data) => setRecipesData(data));
   }, []);
 
-  console.log(recipesData);
+  console.log(recipesData?.allRecipes);
 
   return (
     <div className="mb-5">
@@ -28,7 +26,7 @@ const Recipes = () => {
               <Card>
                 <Card.Img variant="top" src="holder.js/100px160" />
                 <Card.Body>
-                  <Card.Title>Card title</Card.Title>
+                  <Card.Title></Card.Title>
                   <Card.Text>
                     This is a longer card with supporting text below as a
                     natural lead-in to additional content. This content is a
