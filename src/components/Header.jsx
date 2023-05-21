@@ -3,11 +3,11 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { AuthContext } from "../providers/AuthProvider";
-import { Button } from "react-bootstrap";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const Header = () => {
   const { user, LogOut } = useContext(AuthContext);
-  console.log(user?.email);
+  // console.log(user?.photoURL);
 
   const handleLogout = () => {
     LogOut()
@@ -35,20 +35,30 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="m-auto">
+          <Nav className="m-auto d-flex align-items-center">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/recipes">Recipes</Nav.Link>
             <Nav.Link href="/blogs">Blogs</Nav.Link>
 
+            <Nav.Link href="/register">Registration</Nav.Link>
+
+            <OverlayTrigger
+              overlay={
+                <Tooltip id="my-tooltip-id">{user?.displayName}</Tooltip>
+              }
+            >
+              <img className="rounded-circle" src={user?.photoURL} alt="" />
+            </OverlayTrigger>
+
             {user?.email ? (
               <Nav.Link>
-                <Button onClick={handleLogout}>Logout</Button>
+                <Button className="rounded" onClick={handleLogout}>
+                  Logout
+                </Button>
               </Nav.Link>
             ) : (
               <Nav.Link href="/login">Login</Nav.Link>
             )}
-
-            <Nav.Link href="/register">Registration</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

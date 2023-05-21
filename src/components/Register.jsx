@@ -12,6 +12,7 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import { AuthContext } from "../providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const { registerUser } = useContext(AuthContext);
@@ -106,6 +107,10 @@ const Register = () => {
                 <MDBBtn onClick={handleRegistration} className="mb-4" size="lg">
                   Register
                 </MDBBtn>
+
+                <p>
+                  Already have an Account? <Link to="/login">Login</Link>
+                </p>
               </MDBCol>
 
               <MDBCol

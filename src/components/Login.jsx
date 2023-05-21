@@ -9,19 +9,21 @@ import {
 import { AuthContext } from "../providers/AuthProvider";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import { Link } from "react-router-dom";
 // import { useLocation, useHistory, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
-  
+
+  const [user, setUser] = useState(null);
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
 
   const googleSignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
       })
       .catch((error) => {
         console.log("error", error.message);
@@ -79,7 +81,7 @@ const Login = () => {
 
         <div className="text-center">
           <p>
-            Not a member? <a href="/register">Register</a>
+            Don't have an account? <Link to="/register">Register</Link>
           </p>
           <p>or sign up with:</p>
 
