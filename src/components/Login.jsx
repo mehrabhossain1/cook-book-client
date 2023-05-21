@@ -7,7 +7,12 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { AuthContext } from "../providers/AuthProvider";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+} from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { Link } from "react-router-dom";
 // import { useLocation, useHistory, useNavigate } from "react-router-dom";
@@ -17,10 +22,11 @@ const Login = () => {
 
   const [user, setUser] = useState(null);
   const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const googleSignIn = () => {
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
@@ -29,6 +35,19 @@ const Login = () => {
         console.log("error", error.message);
       });
   };
+
+  const githubSignIn = () => {
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        setUser(loggedInUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   // const location = useLocation();
   // const history = useHistory();
   // let navigate = useNavigate();
@@ -100,6 +119,7 @@ const Login = () => {
             </MDBBtn>
 
             <MDBBtn
+              onClick={githubSignIn}
               tag="a"
               color="none"
               className=""

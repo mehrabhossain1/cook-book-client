@@ -47,10 +47,15 @@ const Header = () => {
                 <Tooltip id="my-tooltip-id">{user?.displayName}</Tooltip>
               }
             >
-              <img className="rounded-circle" src={user?.photoURL} alt="" />
+              <img
+                style={{ height: "60px" }}
+                className="rounded-circle"
+                src={user?.photoURL}
+                alt=""
+              />
             </OverlayTrigger>
 
-            {user?.email ? (
+            {user ? (
               <Nav.Link>
                 <Button className="rounded" onClick={handleLogout}>
                   Logout
