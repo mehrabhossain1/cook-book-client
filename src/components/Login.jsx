@@ -14,7 +14,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { useLocation, useHistory, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -48,6 +48,7 @@ const Login = () => {
       });
   };
 
+  const navigate = useNavigate();
   // const location = useLocation();
   // const history = useHistory();
   // let navigate = useNavigate();
@@ -60,6 +61,7 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         console.log(result.user);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err.message);

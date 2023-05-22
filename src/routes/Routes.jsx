@@ -7,6 +7,8 @@ import RecipesLayout from "../layouts/RecipesLayout";
 import Recipes from "../components/Recipes";
 import RecipesDetails from "../components/RecipesDetails";
 import PrivateRoute from "./PrivateRoute";
+import Main from "../components/Main";
+import Blogs from "../components/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
         element: <Register></Register>,
       },
     ],
+  },
+  {
+    path: "/home",
+    element: <Main></Main>,
+  },
+  {
+    path: "blogs",
+    element: <Blogs></Blogs>,
   },
   {
     path: "recipes",

@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { AuthContext } from "../providers/AuthProvider";
 import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { user, LogOut } = useContext(AuthContext);
@@ -35,34 +36,46 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="m-auto d-flex align-items-center">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/recipes">Recipes</Nav.Link>
-            <Nav.Link href="/blogs">Blogs</Nav.Link>
+          <Nav className="ms-auto d-flex align-items-center">
+            <Link className="me-2" to="/home">
+              Home
+            </Link>
+            <Link className="me-2" to="/recipes">
+              Recipes
+            </Link>
+            <Link className="me-2" to="/blogs">
+              Blogs
+            </Link>
 
-            <Nav.Link href="/register">Registration</Nav.Link>
+            <Link className="me-2" to="/register">
+              Registration
+            </Link>
 
-            <OverlayTrigger
-              overlay={
-                <Tooltip id="my-tooltip-id">{user?.displayName}</Tooltip>
-              }
-            >
-              <img
-                style={{ height: "60px" }}
-                className="rounded-circle"
-                src={user?.photoURL}
-                alt=""
-              />
-            </OverlayTrigger>
+            {user && (
+              <OverlayTrigger
+                overlay={
+                  <Tooltip id="my-tooltip-id">{user?.displayName}</Tooltip>
+                }
+              >
+                <img
+                  style={{ height: "60px" }}
+                  className="rounded-circle"
+                  src={user?.photoURL}
+                  alt=""
+                />
+              </OverlayTrigger>
+            )}
 
             {user ? (
-              <Nav.Link>
+              <Link className="me-2">
                 <Button className="rounded" onClick={handleLogout}>
                   Logout
                 </Button>
-              </Nav.Link>
+              </Link>
             ) : (
-              <Nav.Link href="/login">Login</Nav.Link>
+              <Link className="me-2" to="/login">
+                Login
+              </Link>
             )}
           </Nav>
         </Navbar.Collapse>

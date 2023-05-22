@@ -20,7 +20,7 @@ const Recipes = () => {
     <div className="mb-5">
       {/* all recipes */}
       <Container>
-        <Row xs={1} md={2} className="g-4">
+        <Row xs={1} md={3} className="g-4">
           {Array.from({ length: 10 }).map((_, idx) => (
             <Col>
               <Card>
