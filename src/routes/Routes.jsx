@@ -9,6 +9,7 @@ import RecipesDetails from "../components/RecipesDetails";
 import PrivateRoute from "./PrivateRoute";
 import Main from "../components/Main";
 import Blogs from "../components/Blogs";
+import ChefRecipes from "../components/pages/ChefRecipes";
 
 const router = createBrowserRouter([
   {
@@ -34,22 +35,17 @@ const router = createBrowserRouter([
     element: <Blogs></Blogs>,
   },
   {
+    path: "chefRecipes",
+    element: (
+      <PrivateRoute>
+        <ChefRecipes></ChefRecipes>
+      </PrivateRoute>
+    ),
+  },
+  {
     path: "recipes",
     element: <RecipesLayout></RecipesLayout>,
-    children: [
-      {
-        path: "/recipes",
-        element: <Recipes></Recipes>,
-      },
-      {
-        path: ":id",
-        element: (
-          <PrivateRoute>
-            <RecipesDetails></RecipesDetails>
-          </PrivateRoute>
-        ),
-      },
-    ],
+    
   },
 ]);
 

@@ -14,10 +14,15 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
-import { Link, useNavigate } from "react-router-dom";
-// import { useLocation, useHistory, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useTitle from "../hooks/useTitle";
 
 const Login = () => {
+  useTitle("Login");
+
+  const location = useLocation();
+  console.log(location);
+
   const { loginUser } = useContext(AuthContext);
 
   const [user, setUser] = useState(null);
@@ -49,9 +54,6 @@ const Login = () => {
   };
 
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const history = useHistory();
-  // let navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

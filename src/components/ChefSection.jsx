@@ -10,15 +10,18 @@ import {
 } from "mdb-react-ui-kit";
 import { Container } from "react-bootstrap";
 import "../styles/ChefSection.css";
+import { Link, Navigate } from "react-router-dom";
 
 const ChefSection = () => {
   const [recipesData, setRecipesData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allData")
+    fetch("http://localhost:5000/recipes")
       .then((res) => res.json())
-      .then((data) => setRecipesData(data.allRecipes));
+      .then((data) => setRecipesData(data.recipes));
   }, []);
+
+  const handleViewRecipes = () => {};
 
   return (
     <div className="d-flex">
@@ -50,7 +53,15 @@ const ChefSection = () => {
                 <p>Numbers of recipes: {recipe.num_of_recipes}</p>
                 <p>Likes: {recipe.likes}</p>
                 <MDBCardText>Description: {recipe.bio}</MDBCardText>
-                <MDBBtn href="#">Button</MDBBtn>
+                <MDBBtn
+                  onClick={handleViewRecipes}
+                  className="mx-2 rounded-lg"
+                  color="dark"
+                >
+                  <Link className="text-white" to={"/chefRecipes"}>
+                    View Recipes
+                  </Link>{" "}
+                </MDBBtn>
               </MDBCardBody>
             </MDBCard>
           </Container>

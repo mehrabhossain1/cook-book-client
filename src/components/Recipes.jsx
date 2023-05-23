@@ -9,12 +9,12 @@ const Recipes = () => {
   const [recipesData, setRecipesData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allData")
+    fetch("http://localhost:5000/recipes")
       .then((res) => res.json())
       .then((data) => setRecipesData(data));
   }, []);
 
-  console.log(recipesData?.allRecipes);
+  console.log(recipesData?.recipes);
 
   return (
     <div className="mb-5">
