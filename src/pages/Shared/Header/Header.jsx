@@ -1,10 +1,15 @@
-import React from "react";
-import { Button, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Button, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
+
   return (
-    <Navbar bg='dark' variant='dark' expand='lg'>
+    <Container>
+      <Navbar bg='dark' variant='dark' expand='lg'>
       <Navbar.Brand href='#home'>Logo</Navbar.Brand>
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
@@ -17,13 +22,19 @@ const Header = () => {
         {/* profile  */}
 
         <Nav>
-          <Nav.Link href='#deets'>User profile pic</Nav.Link>
-          <Nav.Link eventKey={2} href='#memes'>
-            <Button>Login</Button>
-          </Nav.Link>
+          {user && <Nav.Link href='#deets'>{user.displayName}</Nav.Link>}
+
+          {user ? (
+            <Button>Logout</Button>
+          ) : (
+            <Link to='/login'>
+              <Button>Login</Button>
+            </Link>
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
+    </Container>
   );
 };
 
