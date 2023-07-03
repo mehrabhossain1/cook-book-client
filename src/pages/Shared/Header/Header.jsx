@@ -1,5 +1,6 @@
+import { Button } from "bootstrap";
 import React from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, NavDropdown, Navbar } from "react-bootstrap";
 
 const Header = () => {
   return (
@@ -13,6 +14,15 @@ const Header = () => {
           <Nav.Link href='#services'>Blog</Nav.Link>
           <Nav.Link href='#contact'>Contact</Nav.Link>
         </Nav>
+
+        {/* profile  */}
+
+        <Nav>
+            <Nav.Link href="#deets">More deets</Nav.Link>
+            <Nav.Link eventKey={2} href="#memes">
+              Dank memes
+            </Nav.Link>
+          </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
