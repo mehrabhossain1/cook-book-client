@@ -40,7 +40,7 @@ const Login = () => {
                   wrapperClass='mb-4 mx-5 w-100'
                   labelClass='text-white'
                   label='Password'
-                  id='formControlLg'
+                  id='formControlLg2'
                   type='password'
                   size='lg'
                 />
