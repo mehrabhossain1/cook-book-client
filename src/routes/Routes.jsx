@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Navigate to="/home"></Navigate>
+        element: <Navigate to='/home'></Navigate>,
       },
       {
         path: "login",
@@ -32,6 +32,7 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home></Home>,
+        loader:()=>fetch("http://localhost:5000/chefData")
       },
     ],
   },

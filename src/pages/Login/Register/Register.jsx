@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Container, Form } from "react-bootstrap";
 import {
   MDBBtn,
@@ -18,6 +18,9 @@ import { AuthContext } from "../../../providers/AuthProvider";
 const Register = () => {
   const { createUser } = useContext(AuthContext);
 
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -28,6 +31,7 @@ const Register = () => {
 
     console.log(name, email, password, photo);
 
+    // create user
     createUser(email, password)
       .then((result) => {
         const createdUser = result.user;
@@ -37,6 +41,13 @@ const Register = () => {
       .catch((err) => {
         console.error(err);
       });
+
+    // password validation
+    setError("");
+    if (password.length < 6) {
+      setError("The password is less than 6 characters ");
+      return;
+    }
   };
 
   return (
@@ -54,6 +65,8 @@ const Register = () => {
                   <p className='text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4'>
                     Sign up
                   </p>
+
+                  <p className='text-danger'>{error}</p>
 
                   <div className='d-flex flex-row align-items-center mb-4 '>
                     <MDBIcon fas icon='user me-3' size='lg' />
