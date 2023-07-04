@@ -29,20 +29,24 @@ const Login = () => {
                 </p>
 
                 <MDBInput
+                  name='email'
                   wrapperClass='mb-4 mx-5 w-100'
                   labelClass='text-white'
                   label='Email address'
                   id='formControlLg'
                   type='email'
                   size='lg'
+                  required
                 />
                 <MDBInput
+                  name='password'
                   wrapperClass='mb-4 mx-5 w-100'
                   labelClass='text-white'
                   label='Password'
                   id='formControlLg2'
                   type='password'
                   size='lg'
+                  required
                 />
 
                 <p className='small mb-3 pb-lg-2'>
@@ -77,7 +81,7 @@ const Login = () => {
                     tag='a'
                     color='none'
                     className='m-3'
-                    style={{ color: "white" }}      
+                    style={{ color: "white" }}
                   >
                     <MDBIcon fab icon='google' size='lg' />
                   </MDBBtn>

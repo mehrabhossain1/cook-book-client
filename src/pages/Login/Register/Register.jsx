@@ -1,5 +1,5 @@
-import React from "react";
-import { Container } from "react-bootstrap";
+import React, { useContext } from "react";
+import { Container, Form } from "react-bootstrap";
 import {
   MDBBtn,
   MDBContainer,
@@ -13,8 +13,31 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photo = form.photo.value;
+
+    console.log(name, email, password, photo);
+
+    createUser(email, password)
+      .then((result) => {
+        const createdUser = result.user;
+        console.log(createdUser);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <Container>
       <MDBContainer fluid>
@@ -26,47 +49,68 @@ const Register = () => {
                 lg='6'
                 className='order-2 order-lg-1 d-flex flex-column align-items-center'
               >
-                <p className='text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4'>
-                  Sign up
-                </p>
+                <Form onSubmit={handleRegister}>
+                  <p className='text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4'>
+                    Sign up
+                  </p>
 
-                <div className='d-flex flex-row align-items-center mb-4 '>
-                  <MDBIcon fas icon='user me-3' size='lg' />
-                  <MDBInput
-                    label='Your Name'
-                    id='form1'
-                    type='text'
-                    className='w-100'
-                  />
-                </div>
+                  <div className='d-flex flex-row align-items-center mb-4 '>
+                    <MDBIcon fas icon='user me-3' size='lg' />
+                    <MDBInput
+                      name='name'
+                      label='Your Name'
+                      id='form1'
+                      type='text'
+                      className='w-100'
+                      required
+                    />
+                  </div>
 
-                <div className='d-flex flex-row align-items-center mb-4'>
-                  <MDBIcon fas icon='envelope me-3' size='lg' />
-                  <MDBInput label='Your Email' id='form2' type='email' />
-                </div>
+                  <div className='d-flex flex-row align-items-center mb-4'>
+                    <MDBIcon fas icon='envelope me-3' size='lg' />
+                    <MDBInput
+                      name='email'
+                      label='Your Email'
+                      id='form2'
+                      type='email'
+                      required
+                    />
+                  </div>
 
-                <div className='d-flex flex-row align-items-center mb-4'>
-                  <MDBIcon fas icon='lock me-3' size='lg' />
-                  <MDBInput label='Password' id='form3' type='password' />
-                </div>
+                  <div className='d-flex flex-row align-items-center mb-4'>
+                    <MDBIcon fas icon='lock me-3' size='lg' />
+                    <MDBInput
+                      name='password'
+                      label='Password'
+                      id='form3'
+                      type='password'
+                      required
+                    />
+                  </div>
 
-                <div className='d-flex flex-row align-items-center mb-4'>
-                  <MDBIcon fas icon='key me-3' size='lg' />
-                  <MDBInput label='Photo URL' id='form4' type='text' />
-                </div>
+                  <div className='d-flex flex-row align-items-center mb-4'>
+                    <MDBIcon fas icon='image me-3' size='lg' />
+                    <MDBInput
+                      name='photo'
+                      label='Photo URL'
+                      id='form4'
+                      type='text'
+                    />
+                  </div>
 
-                <div className='mb-4'>
-                  <MDBCheckbox
-                    name='flexCheck'
-                    value=''
-                    id='flexCheckDefault'
-                    label='Accept Terms and Conditions'
-                  />
-                </div>
+                  <div className='mb-4'>
+                    <MDBCheckbox
+                      name='flexCheck'
+                      value=''
+                      id='flexCheckDefault'
+                      label='Accept Terms and Conditions'
+                    />
+                  </div>
 
-                <MDBBtn className='mb-4' size='lg'>
-                  Register
-                </MDBBtn>
+                  <MDBBtn className='mb-4' size='lg'>
+                    Register
+                  </MDBBtn>
+                </Form>
 
                 <p>
                   Already have an account? <Link to='/login'>Login</Link>
