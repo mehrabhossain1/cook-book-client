@@ -4,8 +4,16 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   console.log("user", user);
+
+  const handleLogOut = () => {
+    logOut()
+      .then()
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <Container>
@@ -31,7 +39,7 @@ const Header = () => {
             {user && <Nav.Link href='#deets'>{user.displayName}</Nav.Link>}
 
             {user ? (
-              <Button>Logout</Button>
+              <Button onClick={handleLogOut}>Logout</Button>
             ) : (
               <Link to='/login'>
                 <Button>Login</Button>
