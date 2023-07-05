@@ -1,20 +1,16 @@
 import React from "react";
 import { Button, Container } from "react-bootstrap";
 import Banner from "../Banner/Banner";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 import { useLoaderData } from "react-router-dom";
-import {
-  MDBCard,
-  MDBCardImage,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBRow,
-  MDBCol,
-} from "mdb-react-ui-kit";
+import SpecialRecipes from "../SpecialRecipes/SpecialRecipes";
+
 const Home = () => {
-  const data = useLoaderData();
-  console.log(data);
+  const chefs = useLoaderData();
+  console.log(chefs);
 
   // const {chefPicture,chefName,likes,numberOfRecipes,yearsOfExperience}=data
 
@@ -23,85 +19,52 @@ const Home = () => {
       {/* Banner */}
       <Banner></Banner>
 
+      {/* recipe data */}
+      {/* {chefs.recipes.map((recipe) => {
+        const elem = recipe.recipes.map((ele) => ele);
+        console.log(elem);
+      })} */}
+
       {/* Chef Section */}
-      <div className='mt-5'>
-        <h2 className='text-center'>Chef Section</h2>
-        <MDBRow className='row-cols-1 row-cols-md-3 g-4 text-center'>
-          <MDBCol>
-            <MDBCard className='h-100'>
-              <MDBCardImage
-                className='img-fluid rounded-circle w-50 h-50 mx-auto'
-                src={data[0].chefPicture}
-                alt='...'
-                position='top'
-              />
-              <MDBCardBody>
-                <MDBCardTitle>{data[0].chefName}</MDBCardTitle>
-                <MDBCardText>
-                  Years Of Experience: {data[0].yearsOfExperience}
-                </MDBCardText>
-                <MDBCardText>
-                  numberOfRecipes: {data[0].numberOfRecipes}
-                </MDBCardText>
-                <MDBCardText>likes: {data[0].likes}</MDBCardText>
+      <div className='text-center mt-5'>
+        <h2 className='fw-bold'>Chef Section</h2>
+        <Row xs={1} lg={3} className='g-4 mt-5'>
+          {chefs.recipes.map((chef) => {
+            console.log(chef);
+            return (
+              <Col>
+                <Card>
+                  <Card.Img
+                    className='mx-auto'
+                    style={{
+                      borderRadius: "50%",
+                      height: "200px",
+                      width: "200px",
+                    }}
+                    variant='top'
+                    src={chef.chef_picture}
+                  />
+                  <Card.Body>
+                    <Card.Title>{chef.chef_name}</Card.Title>
+                    <Card.Text>
+                      Years Of Experience: {chef.years_of_experience}
+                    </Card.Text>
+                    <Card.Text>
+                      Number Of Recipes: {chef.num_of_recipes}
+                    </Card.Text>
+                    <Card.Text>Likes: {chef.likes}</Card.Text>
 
-                <Button>View Recipes</Button>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-
-          {/* card 2 */}
-          <MDBCol>
-            <MDBCard className='h-100'>
-              <MDBCardImage
-                className='img-fluid rounded-circle w-50 mx-auto'
-                src='https://mdbootstrap.com/img/new/standard/city/042.webp'
-                alt='...'
-                position='top'
-              />
-              <MDBCardBody>
-                <MDBCardTitle>Card title</MDBCardTitle>
-                <MDBCardText>This is a short card.</MDBCardText>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-          <MDBCol>
-            <MDBCard className='h-100'>
-              <MDBCardImage
-                className='img-fluid rounded-circle w-50 mx-auto'
-                src='https://mdbootstrap.com/img/new/standard/city/043.webp'
-                alt='...'
-                position='top'
-              />
-              <MDBCardBody>
-                <MDBCardTitle>Card title</MDBCardTitle>
-                <MDBCardText>
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content.
-                </MDBCardText>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-          <MDBCol>
-            <MDBCard className='h-100'>
-              <MDBCardImage
-                className='img-fluid rounded-circle w-50 mx-auto'
-                src='https://mdbootstrap.com/img/new/standard/city/044.webp'
-                alt='...'
-                position='top'
-              />
-              <MDBCardBody>
-                <MDBCardTitle>Card title</MDBCardTitle>
-                <MDBCardText>
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </MDBCardText>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
+                    <Button>View Recipes</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            );
+          })}
+        </Row>
       </div>
+
+      {/* Our special recipes */}
+      <SpecialRecipes></SpecialRecipes>
     </Container>
   );
 };
