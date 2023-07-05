@@ -65,6 +65,8 @@ const Home = () => {
 
       {/* Our special recipes */}
       <SpecialRecipes></SpecialRecipes>
+
+      {/* Our Services */}
     </Container>
   );
 };
