@@ -29,7 +29,7 @@ const Home = () => {
       {/* Chef Section */}
       <div className='text-center mt-5'>
         <h2 className='fw-bold'>Chef Section</h2>
-        <Row xs={1} lg={3} className='g-4 mt-5'>
+        <Row xs={1} lg={3} className='g-4 '>
           {chefs.recipes.map((chef) => {
             console.log(chef);
             return (

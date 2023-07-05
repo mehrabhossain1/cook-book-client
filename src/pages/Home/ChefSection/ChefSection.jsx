@@ -11,8 +11,8 @@ import {
 
 const ChefSection = () => {
   return (
-    <div className='mt-5'>
-      <h2 className='text-center'>Chef Section</h2>
+    <div className='mt-5 text-center'>
+      <h2 className='fw-bold'>Chef Section</h2>
       <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
         <MDBCol>
           <MDBCard className='h-100'>

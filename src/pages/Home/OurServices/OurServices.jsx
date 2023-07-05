@@ -5,7 +5,7 @@ import { FaMobileAlt, FaHardHat, FaCar, FaUserTie } from "react-icons/fa";
 const OurServices = () => {
   return (
     <div className='text-center mt-5'>
-      <h2>Our Services</h2>
+      <h2 className='fw-bold'>Our Services</h2>
       <div className='d-flex'>
         <Card style={{ width: "18rem" }} className='mx-2'>
           <Card.Body className='bg-secondary rounded'>

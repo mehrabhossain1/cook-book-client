@@ -5,7 +5,7 @@ import CardGroup from "react-bootstrap/CardGroup";
 const SpecialRecipes = () => {
   return (
     <div className='text-center mt-5'>
-      <h2>Our Special Recipes</h2>
+      <h2 className='fw-bold'>Our Special Recipes</h2>
       <CardGroup className='g-4'>
         <Card>
           <Card.Img
