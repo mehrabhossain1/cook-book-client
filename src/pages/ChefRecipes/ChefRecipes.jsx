@@ -1,10 +1,11 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 const ChefRecipes = () => {
   return (
-    <div>
+    <Container>
       <h2>ChefRecipes Page</h2>
-    </div>
+    </Container>
   );
 };
 

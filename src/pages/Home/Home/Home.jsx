@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import SpecialRecipes from "../SpecialRecipes/SpecialRecipes";
 import OurServices from "../OurServices/OurServices";
 
@@ -55,7 +55,9 @@ const Home = () => {
                     </Card.Text>
                     <Card.Text>Likes: {chef.likes}</Card.Text>
 
+                    {/* <Link to={`/recipes/${id}`}> */}
                     <Button>View Recipes</Button>
+                    {/* </Link> */}
                   </Card.Body>
                 </Card>
               </Col>
