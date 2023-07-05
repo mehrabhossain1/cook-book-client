@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 
 import { useLoaderData } from "react-router-dom";
 import SpecialRecipes from "../SpecialRecipes/SpecialRecipes";
+import OurServices from "../OurServices/OurServices";
 
 const Home = () => {
   const chefs = useLoaderData();
@@ -67,6 +68,7 @@ const Home = () => {
       <SpecialRecipes></SpecialRecipes>
 
       {/* Our Services */}
+      <OurServices></OurServices>
     </Container>
   );
 };
