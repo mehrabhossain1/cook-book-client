@@ -17,18 +17,18 @@ const Header = () => {
 
   return (
     <Container>
-      <Navbar bg='white' variant='white' expand='lg'>
-        <Navbar.Brand href='#home'>Logo</Navbar.Brand>
+      <Navbar className='rounded' bg='light' variant='white' expand='lg'>
+        <Navbar.Brand href='#home'>Cook Book</Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='mx-auto'>
-            <Link className='me-2' to='/'>
+            <Link className='me-2 text-dark' to='/'>
               Home
             </Link>
-            <Link className='me-2' to='/about'>
+            <Link className='me-2 text-dark' to='/about'>
               About
             </Link>
-            <Link className='me-2' to='/blogs'>
+            <Link className='me-2 text-dark' to='/blogs'>
               Blogs
             </Link>
           </Nav>
@@ -39,10 +39,12 @@ const Header = () => {
             {user && <Nav.Link href='#deets'>{user.displayName}</Nav.Link>}
 
             {user ? (
-              <Button onClick={handleLogOut}>Logout</Button>
+              <Button className='btn btn-danger' onClick={handleLogOut}>
+                Logout
+              </Button>
             ) : (
               <Link to='/login'>
-                <Button>Login</Button>
+                <Button className='btn btn-primary'>Login</Button>
               </Link>
             )}
           </Nav>

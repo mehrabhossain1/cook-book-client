@@ -4,6 +4,9 @@ import { useLoaderData, useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const ChefRecipes = () => {
   const { id } = useParams();
@@ -18,9 +21,12 @@ const ChefRecipes = () => {
     num_of_recipes,
     years_of_experience,
   } = singleChef;
+
+  const notify = () => toast("Added to Favorite !");
+
   return (
     <Container className='w-75'>
-      <h2>ChefRecipes Page</h2>
+      <h2 className='text-center fw-bold mb-5 mt-3'>ChefRecipes</h2>
 
       {/* Banner */}
       <Card style={{ width: "" }}>
@@ -60,7 +66,7 @@ const ChefRecipes = () => {
             return (
               <Row className='g-4 w-100 '>
                 <Col>
-                  <Card >
+                  <Card>
                     <Card.Body>
                       <Card.Img
                         className='mb-4 mx-auto d-block'
@@ -72,7 +78,9 @@ const ChefRecipes = () => {
                         variant='top'
                         src={recipe.img}
                       />
-                      <Card.Title className="fw-bold pb-2">{recipe.recipe_name}</Card.Title>
+                      <Card.Title className='fw-bold pb-2'>
+                        {recipe.recipe_name}
+                      </Card.Title>
                       <Card.Text>
                         {" "}
                         <span className='fw-bold'>Ingredients: </span>{" "}
@@ -90,7 +98,10 @@ const ChefRecipes = () => {
                         <span className='fw-bold'>Rating: </span>{" "}
                         {recipe.rating}
                       </Card.Text>
-                      <Button className='btn btn-danger'>Favorite</Button>
+                      <Button onClick={notify} className='btn btn-danger'>
+                        Favorite
+                      </Button>
+                      <ToastContainer />
                     </Card.Body>
                   </Card>
                 </Col>
