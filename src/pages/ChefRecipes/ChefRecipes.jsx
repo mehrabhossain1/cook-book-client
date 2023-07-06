@@ -9,9 +9,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ChefRecipes = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   const singleChef = useLoaderData();
-  console.log(singleChef.recipes);
+  // console.log(singleChef.recipes);
 
   const {
     chef_name,
@@ -22,7 +22,8 @@ const ChefRecipes = () => {
     years_of_experience,
   } = singleChef;
 
-  const notify = () => toast("Added to Favorite !");
+  // toast
+  const notify = () => toast("Added to Favorite");
 
   return (
     <Container className='w-75'>

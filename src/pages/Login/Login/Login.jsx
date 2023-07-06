@@ -10,13 +10,15 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { Container, Form } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
-
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log("login page location", location);
+  const from = location.state?.from?.pathname || "/home";
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ const Login = () => {
         console.log(loggedUser);
         form.reset();
         alert("User logged in successfully");
-        navigate("/home");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
