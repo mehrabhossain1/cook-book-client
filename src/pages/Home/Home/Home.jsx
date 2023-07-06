@@ -4,34 +4,25 @@ import Banner from "../Banner/Banner";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-
 import { Link, useLoaderData } from "react-router-dom";
 import SpecialRecipes from "../SpecialRecipes/SpecialRecipes";
 import OurServices from "../OurServices/OurServices";
 
 const Home = () => {
   const chefs = useLoaderData();
-  console.log(chefs);
-
-  // const {chefPicture,chefName,likes,numberOfRecipes,yearsOfExperience}=data
+  // console.log(chefs);
 
   return (
     <Container>
       {/* Banner */}
       <Banner></Banner>
 
-      {/* recipe data */}
-      {/* {chefs.recipes.map((recipe) => {
-        const elem = recipe.recipes.map((ele) => ele);
-        console.log(elem);
-      })} */}
-
       {/* Chef Section */}
       <div className='text-center mt-5'>
         <h2 className='fw-bold'>Chef Section</h2>
         <Row xs={1} lg={3} className='g-4 '>
           {chefs.recipes.map((chef) => {
-            console.log(chef);
+            // console.log(chef);
             return (
               <Col>
                 <Card>
