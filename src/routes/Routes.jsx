@@ -7,11 +7,13 @@ import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
 import ChefRecipes from "../pages/ChefRecipes/ChefRecipes";
 import PrivateRoute from "./PrivateRoute";
+import Error from "../pages/Error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginLayout></LoginLayout>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -30,6 +32,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+
     children: [
       {
         path: "/home",
