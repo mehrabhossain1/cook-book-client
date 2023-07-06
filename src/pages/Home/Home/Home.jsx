@@ -55,9 +55,9 @@ const Home = () => {
                     </Card.Text>
                     <Card.Text>Likes: {chef.likes}</Card.Text>
 
-                    {/* <Link to={`/recipes/${id}`}> */}
-                    <Button>View Recipes</Button>
-                    {/* </Link> */}
+                    <Link to={`/recipes/${chef.id}`}>
+                      <Button>View Recipes</Button>
+                    </Link>
                   </Card.Body>
                 </Card>
               </Col>
