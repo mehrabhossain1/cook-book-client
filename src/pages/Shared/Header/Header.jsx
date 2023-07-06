@@ -1,18 +1,27 @@
 import React, { useContext } from "react";
-import { Button, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   // console.log("user", user);
 
+  // logout
   const handleLogOut = () => {
     logOut()
       .then()
       .catch((err) => {
         console.error(err);
       });
+  };
+
+  // active link indicate
+  const activeLink = ({ isActive }) => {
+    return {
+      fontWeight: isActive ? "bold" : "normal",
+      textDecoration: isActive ? "none" : "underline",
+    };
   };
 
   return (
@@ -22,21 +31,18 @@ const Header = () => {
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='mx-auto'>
-            <Link className='me-2 text-dark' to='/'>
+            <NavLink style={activeLink} className='me-2 text-dark' to='/'>
               Home
-            </Link>
-            <Link className='me-2 text-dark' to='/about'>
-              About
-            </Link>
-            <Link className='me-2 text-dark' to='/blogs'>
+            </NavLink>
+            <NavLink style={activeLink} className='me-2 text-dark' to='/blogs'>
               Blogs
-            </Link>
+            </NavLink>
           </Nav>
 
           {/* profile  */}
 
           <Nav>
-            {user && <Nav.Link href='#deets'>{user.displayName}</Nav.Link>}
+            {/* {user && } */}
 
             {user ? (
               <Button className='btn btn-danger' onClick={handleLogOut}>

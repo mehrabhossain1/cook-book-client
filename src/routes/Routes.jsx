@@ -8,6 +8,7 @@ import Register from "../pages/Login/Register/Register";
 import ChefRecipes from "../pages/ChefRecipes/ChefRecipes";
 import PrivateRoute from "./PrivateRoute";
 import Error from "../pages/Error/Error";
+import Blogs from "../pages/Blogs/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/recipes/${params.id}`),
       },
     ],
+  },
+  {
+    path: "/blogs",
+    element: <Blogs></Blogs>,
   },
 ]);
 
