@@ -5,7 +5,6 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { ToastContainer, toast } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
 
 const ChefRecipes = () => {
@@ -23,7 +22,10 @@ const ChefRecipes = () => {
   } = singleChef;
 
   // toast
-  const notify = () => toast("Added to Favorite");
+  const handleClick = (event) => {
+    event.currentTarget.disabled = true;
+    toast("Added to Favorite");
+  };
 
   return (
     <Container className='w-75'>
@@ -65,7 +67,7 @@ const ChefRecipes = () => {
         <div className='d-flex'>
           {singleChef.recipes.map((recipe) => {
             return (
-              <Row className='g-4 w-100 '>
+              <Row className='g-4 w-100'>
                 <Col>
                   <Card>
                     <Card.Body>
@@ -99,7 +101,7 @@ const ChefRecipes = () => {
                         <span className='fw-bold'>Rating: </span>{" "}
                         {recipe.rating}
                       </Card.Text>
-                      <Button onClick={notify} className='btn btn-danger'>
+                      <Button onClick={handleClick} className='btn btn-danger'>
                         Favorite
                       </Button>
                       <ToastContainer />
@@ -110,24 +112,6 @@ const ChefRecipes = () => {
             );
           })}
         </div>
-
-        {/* <Row xs={1} md={3} className="g-4">
-      {Array.from({ length: 4 }).map((_, idx) => (
-        <Col key={idx}>
-          <Card>
-            <Card.Img variant="top" src="holder.js/100px160" />
-            <Card.Body>
-              <Card.Title>Card title</Card.Title>
-              <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
-    </Row> */}
       </div>
     </Container>
   );
