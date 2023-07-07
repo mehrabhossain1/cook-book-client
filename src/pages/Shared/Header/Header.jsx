@@ -51,6 +51,9 @@ const Header = () => {
           <Nav>
             {user && (
               <img
+                data-toggle='tooltip'
+                data-placement='left'
+                title={user.displayName}
                 className='me-2 w-25 rounded-circle'
                 src={user.photoURL}
                 alt=''

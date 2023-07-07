@@ -14,7 +14,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Login = () => {
-  const { signIn, googleSignIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   // console.log("login page location", location);
@@ -24,7 +24,21 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
+        alert("User logged in successfully");
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleGithubSignIn = (e) => {
+    githubSignIn()
+      .then((result) => {
+        const user = result.user;
+        // console.log(user);
+        alert("User logged in successfully");
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -42,7 +56,7 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        // console.log(loggedUser);
         alert("User logged in successfully");
         form.reset();
         navigate(from, { replace: true });
@@ -100,21 +114,13 @@ const Login = () => {
 
                   <div className='d-flex flex-row mt-3 mb-5'>
                     <MDBBtn
+                      onClick={handleGithubSignIn}
                       tag='a'
                       color='none'
                       className='m-3'
                       style={{ color: "white" }}
                     >
-                      <MDBIcon fab icon='facebook-f' size='lg' />
-                    </MDBBtn>
-
-                    <MDBBtn
-                      tag='a'
-                      color='none'
-                      className='m-3'
-                      style={{ color: "white" }}
-                    >
-                      <MDBIcon fab icon='twitter' size='lg' />
+                      <MDBIcon fab icon='github' size='lg' />
                     </MDBBtn>
 
                     <MDBBtn
