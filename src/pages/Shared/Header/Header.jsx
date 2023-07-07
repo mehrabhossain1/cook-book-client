@@ -1,5 +1,12 @@
 import React, { useContext } from "react";
-import { Button, Container, Image, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  Image,
+  Nav,
+  NavDropdown,
+  Navbar,
+} from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
@@ -42,7 +49,13 @@ const Header = () => {
           {/* profile  */}
 
           <Nav>
-            {/* {user && } */}
+            {user && (
+              <img
+                className='me-2 w-25 rounded-circle'
+                src={user.photoURL}
+                alt=''
+              />
+            )}
 
             {user ? (
               <Button className='btn btn-danger' onClick={handleLogOut}>

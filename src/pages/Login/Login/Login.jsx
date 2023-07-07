@@ -14,11 +14,23 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   // console.log("login page location", location);
   const from = location.state?.from?.pathname || "/home";
+
+  const handleGoogleLogin = (e) => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -106,6 +118,7 @@ const Login = () => {
                     </MDBBtn>
 
                     <MDBBtn
+                      onClick={handleGoogleLogin}
                       tag='a'
                       color='none'
                       className='m-3'
