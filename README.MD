@@ -1,4 +1,4 @@
-Live Site:
+Live Site: https://food-recipe-10.web.app/home
 
 - At first, I created the project and made the header and footer.
 - Then implemented the Authentication.
